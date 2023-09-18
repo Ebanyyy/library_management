@@ -26,6 +26,7 @@ GEM
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.9)
     pg (1.5.4)
+    pg (1.5.4-x64-mingw-ucrt)
     psych (5.1.0)
       stringio
     puma (6.3.1)
@@ -53,6 +54,7 @@ GEM
       concurrent-ruby (~> 1.0)
 
 PLATFORMS
+  x64-mingw-ucrt
   x86_64-darwin-22
 
 DEPENDENCIES
@@ -65,7 +67,7 @@ DEPENDENCIES
   sinatra-activerecord
 
 RUBY VERSION
-   ruby 3.2.1p31
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.4.17
