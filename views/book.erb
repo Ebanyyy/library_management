@@ -1,3 +1,24 @@
-<h1>Title : <%= @book.title %></h1>
+<h2>Title : <%= @book.title %></h2>
 <h4>Author : <%= @book.author %></h4>
-<a class="button" href="/">Back to Homepage</a>
+<br>
+<form action= "/books/edit/<%= @book.id%>" method="post">
+	<input type="submit" value="Edit">
+</form>
+<br>
+<form action = "/books/delete/<%= @book.id%>" method = "post">
+	<input type="submit" value="Delete">
+</form>
+<br>
+
+<a href="/books/review/<%= @book.id%>">Reviews</a>
+<% if @book.reviews.any? %>
+	<% @book.reviews.each do |review| %>
+		<%= review.content %> by <%= review.name %>
+	<%end%>
+<%else%>
+	<p>No review yet.</p>
+<%end%>
+
+<a class="button" href="/books">List of Books</a>
+
+<!-- <a class="button" href="/">Back to Homepage</a> -->

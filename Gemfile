@@ -5,6 +5,9 @@ ruby '3.2.2'
 gem 'sinatra'
 gem 'puma'
 
+gem 'bcrypt'
+# gem 'sinatra-flash'
+
 # Database
 gem 'rake'
 gem 'pg'
