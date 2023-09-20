@@ -6,7 +6,7 @@ gem 'sinatra'
 gem 'puma'
 
 gem 'bcrypt'
-# gem 'sinatra-flash'
+gem 'sinatra-flash'
 
 # Database
 gem 'rake'

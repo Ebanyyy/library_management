@@ -3,11 +3,15 @@
 <form action="/add_book" method="post"> 
 	<label for="title">Title: </label>
 	<input type="text" name="title" required>
-	<br>
 	<label for="author">Author: </label>
 	<input type="text" name="author" required>
+	<p>
 	<input type="submit" name="Submit">
 	<br>
 </form>
 <p>
 <a class="button" href="/books">List of Books</a>
+
+<form action="/logout" >
+	<input type="submit" value="Logout">
+</form>

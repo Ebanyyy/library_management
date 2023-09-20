@@ -5,6 +5,9 @@
   <title>Elevate - Sinatra ActiveRecord</title>
 </head>
 <body>
+  <% if flash[:message]%>
+    <%= flash[:message]%>
+  <%end%>
   <%= yield %>
 </body>
 </html>
