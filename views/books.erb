@@ -6,6 +6,7 @@
 			Title: <%= book.title %>
 			<br>
 			Author: <%= book.author %>
+			<br>
 			<a href="/books/<%= book.id%>">Details</a>
 		</p>
 	<% end %>
@@ -17,4 +18,6 @@
 	<input type="submit" value="Add Book">
 </form>
 
-<a class="button" href="/">Back to Homepage</a>
+<form action="/logout" >
+	<input type="submit" value="Logout">
+</form>

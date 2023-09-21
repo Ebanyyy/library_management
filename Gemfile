@@ -8,6 +8,8 @@ gem 'puma'
 gem 'bcrypt'
 gem 'sinatra-flash'
 
+gem 'pry'
+
 # Database
 gem 'rake'
 gem 'pg'

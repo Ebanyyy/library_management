@@ -10,15 +10,18 @@
 </form>
 <br>
 
-<a href="/books/review/<%= @book.id%>">Reviews</a>
 <% if @book.reviews.any? %>
 	<% @book.reviews.each do |review| %>
-		<%= review.content %> by <%= review.name %>
-	<%end%>
+		<%= review.content %> by <%= User.find(review.user_id).user_name %>. Rating: <%= review.rating%>/5<br>
+		<%end%>
 <%else%>
+<br>
 	<p>No review yet.</p>
 <%end%>
 
+<br>
+<a href="/books/review/<%= @book.id%>">Add Reviews</a>
+<br>
 <a class="button" href="/books">List of Books</a>
 
 <!-- <a class="button" href="/">Back to Homepage</a> -->

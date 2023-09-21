@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'bcrypt'
 require 'sinatra/flash'
+require 'pry'
 
 require_relative 'models/book'
 require_relative 'models/review'
@@ -20,7 +21,7 @@ get '/add_book' do
 end
 
 post '/add_book' do 
-	@book = Book.create(title: params[:title], author: params[:author])
+	@book = current_user.books.create(title: params[:title], author: params[:author])
 	if @book.save
 		erb :book 
 	else
@@ -29,13 +30,17 @@ post '/add_book' do
 end
 
 get '/books' do 
-	@books = Book.all
+	@books = current_user.books.all
 	erb :books
 end
 
 get '/books' do 
-	@books = Book.order(created_at: :asc)
-	erb :books
+	if current_user.nil?
+		redirect '/login'
+	else
+		@books = current_user.books.order(created_at: :asc)
+		erb :books
+	end
 end
 
 post '/book' do 
@@ -74,15 +79,34 @@ post '/books/delete/:id' do
 	end
 end
 
-post '/books/review/:id' do 
-	@book = Book.find(params[:id])
-	erb :review
+get '/book/:book_id/reviews/new' do 
+	@book = Book.find(params[:book_id])
+	erb :new_review
 end
 
-post '/books/add_review/:id' do 
+post '/book/:book_id/reviews/new' do 
+	@book = Book.find(params[:book_id])
+	@review = current_user.reviews.create(
+		content: params[:content],
+		rating: params[:rating],
+		book_id: @book.id)
+
+	if @review.save
+		redirect "/books/#{@book.id}"
+	else
+		erb :new_review
+	end
+end
+
+get '/books/review/:id' do 
 	@book = Book.find(params[:id])
-	@book.reviews.create(name: params[:name], rating: params[:rating])
-	erb :book 
+	erb :new_review
+end
+
+post '/books/add_review/:id' do
+	@book = Book.find(params[:id])
+	current_user.reviews.create(content: params[:content], rating: params[:rating], book_id: @book.id)
+	redirect "/books/#{@book.id}"
 end
 
 get '/register' do 
